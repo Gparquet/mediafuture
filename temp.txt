@@ -1,0 +1,9 @@
+1°) Installation de storybook et node-sass
+- node-sass n'est pas obligatoire, mais c'est mieux pour la gestion du CSS 
+
+2°) Header and Footer
+
+- Utilisation de composant existant créé par AXA. 
+- Installation de : 
+    * @axa-fr/react-toolkit-layout-footer
+    * @axa-fr/react-toolkit-layout-header
