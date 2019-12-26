@@ -17,6 +17,7 @@
 	"lint-staged": {
 		"src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
 			"prettier --write",
+			"npm run lint",
 			"git add"
 		]
 	},
@@ -30,7 +31,8 @@
 		"build": "react-scripts build",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject",
-		"storybook": "start-storybook"
+		"storybook": "start-storybook",
+		"lint": "eslint \"**/*.js\" --fix --max-warnings=0"
 	},
 	"eslintConfig": {
 		"extends": "react-app"
