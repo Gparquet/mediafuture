@@ -1,0 +1,14 @@
+{
+	"extends": "react-app",
+	"parserOptions": {
+		"ecmaVersion": 6,
+		"sourceType": "module",
+		"ecmaFeatures": {
+			"jsx": true
+		}
+	},
+	"rules": {
+		"quotes": ["error", "single"],
+		"eol-last": ["error", "always"]
+	}
+}
