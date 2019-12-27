@@ -1,0 +1,16 @@
+{
+	"data": [
+		{
+			"id": "c4f8dfb2-3188-482a-99c8-27c2ccbf8cc4",
+			"title": "çA",
+			"author": "Stephen King",
+			"dematerialized": true
+		},
+		{
+			"id": "e2f11ee4-556c-434e-8604-f64eb536cacd",
+			"title": "Shining",
+			"author": "Stephen King",
+			"dematerialized": false
+		}
+	]
+}

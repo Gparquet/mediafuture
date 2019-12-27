@@ -2,8 +2,9 @@ const express = require('express');
 const proxy = require('http-proxy-middleware');
 const bodyParser = require('body-parser');
 const fs = require('file-system');
-const _ = require('lodash');
-const contactService = require('./Album/albums.service');
+const albumService = require('./Album/albums.service');
+const movieService = require('./Movie/movies.service');
+const bookService = require('./Book/books.service');
 
 const port = 3001;
 const app = express();
@@ -32,23 +33,23 @@ if (mockUrl) {
 		.get((req, res) => {
 			res.setHeader('Access-Control-Allow-Origin', '*');
 			setTimeout(() => {
-				res.send(contactService.allAlbums());
+				res.send(albumService.allAlbums());
 			}, 200);
 		})
 		.post(urlencodedParser, (req, res) => {
 			setTimeout(() => {
-				const contact = {
+				const album = {
 					firstName: req.body.firstName,
 					lastName: req.body.lastName,
 					phoneNumber: req.body.phoneNumber,
 					email: req.body.email
 				};
-				const contacts = contactService.addNewContact(contact);
-				console.log(contacts);
-				if (contacts) {
+				const albums = albumService.addNewContact(album);
+				console.log(albums);
+				if (albums) {
 					fs.writeFile(
-						'./contact/contact.json',
-						JSON.stringify(contacts),
+						'./album/album.json',
+						JSON.stringify(albums),
 						err => {
 							console.log(err);
 							if (err) {
@@ -64,19 +65,24 @@ if (mockUrl) {
 			}, 200);
 		});
 
-	apiRoutes.route('/contacts/:id').get((req, res) => {
+	apiRoutes.route('/movies').get((req, res) => {
+		res.setHeader('Access-Control-Allow-Origin', '*');
 		setTimeout(() => {
-			res.send(contactService.findContactById(req.params.id));
+			res.send(movieService.allMovies());
 		}, 200);
 	});
-	apiRoutes.route('/contacts/:firstName/:lastName').get((req, res) => {
+
+	apiRoutes.route('/books').get((req, res) => {
+		res.setHeader('Access-Control-Allow-Origin', '*');
 		setTimeout(() => {
-			res.send(
-				contactService.findContactsByFirstAndLastName(
-					req.params.firstName,
-					req.params.lastName
-				)
-			);
+			res.send(bookService.allBooks());
+		}, 200);
+	});
+
+	apiRoutes.route('/ebooks').get((req, res) => {
+		res.setHeader('Access-Control-Allow-Origin', '*');
+		setTimeout(() => {
+			res.send(bookService.allEBooks());
 		}, 200);
 	});
 }

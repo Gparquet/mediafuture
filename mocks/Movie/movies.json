@@ -1,0 +1,16 @@
+{
+	"data": [
+		{
+			"id": "1ace8a5c-f590-4ad0-84c3-8859cffcf926",
+			"title": "Alien le huitième passager",
+			"author": "Ridley Scott",
+			"dematerialized": false
+		},
+		{
+			"id": "b89e6b16-5079-4a34-a9f1-2b57432bd1c8",
+			"title": "Alien le retour",
+			"author": "Ridley Scott",
+			"dematerialized": true
+		}
+	]
+}
