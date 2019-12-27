@@ -1,3 +1,10 @@
 import { configure } from '@storybook/react';
 
-configure(require.context('../src', true, /\.stories\.js$/), module);
+const loaderFn = () => {
+  const allExports = [];
+  const req = require.context('../src', true, /\.stories\.js$/);
+  req.keys().forEach(fname => allExports.push(req(fname)));
+  return allExports;
+};
+
+configure(loaderFn, module);
