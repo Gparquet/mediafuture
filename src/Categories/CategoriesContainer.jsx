@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { connect, useDispatch, useSelector } from 'react-redux';
+import { load } from './Categories.action';
+
 import Categories from './Categories';
 
 const url = 'http://localhost:3001/api';
@@ -18,31 +21,29 @@ const geteBooks = () => {
   return fetch(`${url}/ebooks`).then(res => res.json());
 };
 
-const CategoriesContainer = () => {
-  const [state, setState] = useState({
-    albums: [],
-    movies: [],
-    books: [],
-    ebooks: []
-  });
+export const mapStateToProps = state => ({
+  ...state.CategorieReducer
+});
+
+export const mapDispatchToProps = dispatch => ({
+  onLoad: values => dispatch(load(values))
+});
+
+const CategoriesContainer = props => {
+  const { onLoad } = props;
+  const dispatch = useDispatch();
 
   useEffect(() => {
     Promise.all([getAlbums(), getMovies(), getBooks(), geteBooks()]).then(
       values => {
-        const albums = values[0].data;
-        const movies = values[1].data;
-        const books = values[2].data;
-        const ebooks = values[3].data;
-        setState({
-          albums,
-          movies,
-          books,
-          ebooks
-        });
+        dispatch(onLoad(values));
       }
     );
   });
-  return <Categories {...state} />;
+  return <Categories {...props.categories} />;
 };
 
-export default CategoriesContainer;
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CategoriesContainer);
